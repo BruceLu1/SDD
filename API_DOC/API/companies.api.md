@@ -11,12 +11,14 @@ Description :
   - 定義 Request / Response 結構與欄位說明
   - 請參考：`/Users/bruce/SDD/API_DOC/Contract/01_companies.contract.md`
 
-- **Database Schema**
-  - 稅籍資料表、排程記錄表與即時發查紀錄表之結構與欄位定義
-  - 請參考`/Users/bruce/SDD/API_DOC/DB_Schema`下：
-    - `companies.schema.md`
-    - `tasks.schema.md`
-    - `instant-query-record.schema.md`
+## Persistence Constraints
+
+本 API 所使用之所有持久化資料，  
+必須符合系統既有之 DB schema 定義與使用規則。
+
+詳細資料結構與欄位定義，請參考：
+- DB Schema Index 文件: `API_DOC/DB_Schema/db.schema.index.md`
+- Persistence Rules 文件: `API_DOC/DB_Schema/persistence.rules.md`
 
 - **相關外部 API 文件**
   - 外部API Request / Response 結構與欄位說明
