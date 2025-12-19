@@ -12,7 +12,7 @@
 | `parent_party_id` | `string`      | 母企業統一編號   | -          |         |
 | `party_name`      | `string`      | 企業名稱         | `原味商行`          |         |
 | `paid_in_capital`  | `number`  | 資本額           | `100000`          |         |
-| `setup_date`      | `date`        | 註冊日期(yyyMMdd) 民國年         | `1040413`       |         |
+| `setup_date`      | `string`        | 註冊日期(yyyMMdd) 民國年         | `1040413`       |         |
 | `party_type`      | `string`      | 公司型態         | `獨資`        |         |
 | `use_invoice`     | `string`     | 是否開立發票     | `N`        |         |
 | `ind_code`        | `number`       | 主要產業類別代碼 | `472927`    |         |

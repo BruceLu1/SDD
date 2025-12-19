@@ -51,7 +51,7 @@
 | result.item[].party_type | string | 公司型態 |  |
 | result.item[].ind_code | number | 主要產業分類 |  |
 | result.item[].update_time | string | 資料更新時間 | 格式 YYYYMMDD |
-| result.item[].status | string | 資料狀態 | enum：SUCCESS、FAILED、PROCESSING、NO_DATA |
+| result.item[].status | string | 資料狀態 | enum：SUCCESS、PROCESSING、NO_DATA（`FAILED` 為內部狀態，API 不會回傳） |
 | result.total_count | number | 回傳筆數 |  |
 
 ---
@@ -101,4 +101,7 @@ HTTP Status Code 200 代表 服務正常啟用並成功回應請求。
 ---
 
 ## 5. Notes / Open Questions（選填）
-* status 目前會回傳 SUCCESS、FAILED、PROCESSING、NO_DATA。
+* `status` 由下列資料決定：
+  - 當前一日 `TASKS`（type = "稅籍"）狀態為 `SUCCESS` 時，會查 `Companies` 取得該 `party_id` 的最新資料；若存在資料，輸出 `SUCCESS`，否則輸出 `NO_DATA`。
+  - 否則會檢查 `instant_query_record`（type = "稅籍"、ID = party_id）最新一筆紀錄：`SUCCESS` → 撈取今日 `Companies`，`NO_DATA` → 直接回傳 `NO_DATA`，`PROCESSING` → 回傳 `PROCESSING`，`FAILED` 或缺少紀錄 → 呼叫爬蟲並回傳 `PROCESSING`。
+  - `PROCESSING` 為中間狀態，API 不會回傳 `FAILED`，也不會在回應中泄漏 `task_id`；重複呼叫同一 `party_id` 在 `PROCESSING` 時會保持 `PROCESSING`，不會再次觸發爬蟲。
